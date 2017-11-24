@@ -1,0 +1,157 @@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:sectanchors:
+
+= Inventory manager service guide
+Yuri Lupol;
+
+
+[introduction]
+= Introduction
+
+Inventory manager service is a RESTful service for ...
+
+[[overview]]
+= Overview
+
+[[overview-http-verbs]]
+== HTTP verbs
+Inventory manager service tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP verbs.
+|===
+| Verb | Usage
+
+| `GET`
+| Used to retrieve a resource
+
+| `POST`
+| Used to create a new resource
+
+| `PATCH`
+| Used to update an existing resource, including partial updates
+
+| `PUT`
+| Used to update an existing resource, full updates only
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+Inventory manager service tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP status codes.
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| Standard response for successful HTTP requests.
+ The actual response will depend on the request method used.
+ In a GET request, the response will contain an entity corresponding to the requested resource.
+ In a POST request, the response will contain an entity describing or containing the result of the action.
+
+| `201 Created`
+| The request has been fulfilled and resulted in a new resource being created.
+
+| `204 No Content`
+| The server successfully processed the request, but is not returning any content.
+
+| `400 Bad Request`
+| The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
+
+| `404 Not Found`
+| The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible.
+
+| `409 Conflict`
+| The request could not be completed due to a conflict with the current state of the target resource.
+|===
+
+
+= Endpoints
+
+== Location
+
+=== List locations
+cURL request
+include::{snippets}/location-controller-test/test-get-all/curl-request.adoc[]
+HTTPie request:
+include::{snippets}/location-controller-test/test-get-all/httpie-request.adoc[]
+HTTP request
+include::{snippets}/location-controller-test/test-get-all/http-request.adoc[]
+HTTP response
+include::{snippets}/location-controller-test/test-get-all/http-response.adoc[]
+HTTP response fields
+include::{snippets}/location-controller-test/test-get-all/response-fields.adoc[]
+
+=== Get location
+cURL request
+include::{snippets}/location-controller-test/test-get-by-id/curl-request.adoc[]
+HTTPie request:
+include::{snippets}/location-controller-test/test-get-by-id/httpie-request.adoc[]
+HTTP request
+include::{snippets}/location-controller-test/test-get-by-id/http-request.adoc[]
+Path parameters
+include::{snippets}/location-controller-test/test-get-by-id/path-parameters.adoc[]
+HTTP response
+include::{snippets}/location-controller-test/test-get-by-id/http-response.adoc[]
+HTTP response fields
+include::{snippets}/location-controller-test/test-get-by-id/response-fields.adoc[]
+
+=== Get location by name
+cURL request
+include::{snippets}/location-controller-test/test-get-by-name/curl-request.adoc[]
+HTTPie request:
+include::{snippets}/location-controller-test/test-get-by-name/httpie-request.adoc[]
+HTTP request
+include::{snippets}/location-controller-test/test-get-by-name/http-request.adoc[]
+Path parameters
+include::{snippets}/location-controller-test/test-get-by-name/path-parameters.adoc[]
+HTTP response
+include::{snippets}/location-controller-test/test-get-by-name/http-response.adoc[]
+HTTP response fields
+include::{snippets}/location-controller-test/test-get-by-name/response-fields.adoc[]
+
+=== Create location
+cURL request
+include::{snippets}/location-controller-test/test-create/curl-request.adoc[]
+HTTPie request:
+include::{snippets}/location-controller-test/test-create/httpie-request.adoc[]
+HTTP request
+include::{snippets}/location-controller-test/test-create/http-request.adoc[]
+Request fields
+include::{snippets}/location-controller-test/test-create/request-fields.adoc[]
+HTTP response
+include::{snippets}/location-controller-test/test-create/http-response.adoc[]
+HTTP response fields
+include::{snippets}/location-controller-test/test-create/response-fields.adoc[]
+
+=== Update location
+cURL request
+include::{snippets}/location-controller-test/test-update/curl-request.adoc[]
+HTTPie request:
+include::{snippets}/location-controller-test/test-update/httpie-request.adoc[]
+HTTP request
+include::{snippets}/location-controller-test/test-update/http-request.adoc[]
+Path parameters
+include::{snippets}/location-controller-test/test-update/path-parameters.adoc[]
+Request fields
+include::{snippets}/location-controller-test/test-update/request-fields.adoc[]
+HTTP response
+include::{snippets}/location-controller-test/test-update/http-response.adoc[]
+
+=== Delete location
+cURL request
+include::{snippets}/location-controller-test/test-delete/curl-request.adoc[]
+HTTPie request:
+include::{snippets}/location-controller-test/test-delete/httpie-request.adoc[]
+HTTP request
+include::{snippets}/location-controller-test/test-delete/http-request.adoc[]
+Path parameters
+include::{snippets}/location-controller-test/test-delete/path-parameters.adoc[]
+HTTP response
+include::{snippets}/location-controller-test/test-delete/http-response.adoc[]
