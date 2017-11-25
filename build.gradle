@@ -1,16 +1,16 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.8.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-		jcenter()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("org.asciidoctor:asciidoctor-gradle-plugin:1.5.3")
-		classpath("org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11")
-	}
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.asciidoctor:asciidoctor-gradle-plugin:1.5.3")
+        classpath("org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11")
+    }
 }
 
 apply plugin: 'java'
@@ -24,70 +24,72 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 
 ext {
-	snippetsDir = file('build/generated-snippets')
+    snippetsDir = file('build/generated-snippets')
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-validation')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compileOnly('org.projectlombok:lombok')
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-validation'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.flywaydb:flyway-core:4.2.0'
+    compileOnly 'org.projectlombok:lombok'
 
-	runtime('org.springframework.boot:spring-boot-devtools')
-	runtime('com.h2database:h2')
+    runtime 'org.springframework.boot:spring-boot-devtools'
+    runtime 'com.h2database:h2'
 
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
-	testCompile('org.springframework.security:spring-security-test')
+    testCompile 'org.flywaydb.flyway-test-extensions:flyway-spring-test:4.0.1'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testCompile 'org.springframework.security:spring-security-test'
 
-	asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:1.2.2.RELEASE'
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:1.2.2.RELEASE'
 }
 
 jar {
-	dependsOn asciidoctor
-	from ("${asciidoctor.outputDir}/html5") {
-		into 'static/docs'
-	}
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
 }
 
 test {
-	outputs.dir snippetsDir
+    outputs.dir snippetsDir
 }
 
 asciidoctorj {
-	version = '1.6.0-alpha.3'
+    version = '1.6.0-alpha.3'
 }
 
 asciidoctor {
-	dependsOn test
-	inputs.dir snippetsDir
-	backends 'html5', 'pdf'
-	options doctype: 'book'
-	sourceDir "src/docs/asciidoc"
-	outputDir "build/asciidoc"
+    dependsOn test
+    inputs.dir snippetsDir
+    backends 'html5', 'pdf'
+    options doctype: 'book'
+    sourceDir "src/docs/asciidoc"
+    outputDir "build/asciidoc"
 
-	attributes = [
-			'build-gradle': file('build.gradle'),
-			'source-highlighter': 'highlightjs',
-			'imagesdir'         : './images',
-			'toc'               : 'left',
-			'toclevels'         : 3,
-			'numbered'          : '',
-			'icons'             : 'font',
-			'setanchors'        : '',
-			'idprefix'          : '',
-			'idseparator'       : '-',
-			'docinfo1'          : '',
-			'safe-mode-unsafe'  : '',
-			'allow-uri-read'    : '',
-			'snippets'          : snippetsDir,
-			linkattrs           : true,
-			encoding            : 'utf-8'
-	]
+    attributes = [
+            'build-gradle'      : file('build.gradle'),
+            'source-highlighter': 'highlightjs',
+            'imagesdir'         : './images',
+            'toc'               : 'left',
+            'toclevels'         : 3,
+            'numbered'          : '',
+            'icons'             : 'font',
+            'setanchors'        : '',
+            'idprefix'          : '',
+            'idseparator'       : '-',
+            'docinfo1'          : '',
+            'safe-mode-unsafe'  : '',
+            'allow-uri-read'    : '',
+            'snippets'          : snippetsDir,
+            linkattrs           : true,
+            encoding            : 'utf-8'
+    ]
 }
