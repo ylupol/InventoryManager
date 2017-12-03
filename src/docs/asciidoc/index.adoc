@@ -155,3 +155,19 @@ Path parameters
 include::{snippets}/location-controller-test/test-delete/path-parameters.adoc[]
 HTTP response
 include::{snippets}/location-controller-test/test-delete/http-response.adoc[]
+
+== Item
+
+=== Get item
+cURL request
+include::{snippets}/item-controller-test/test-get-by-id/curl-request.adoc[]
+HTTPie request:
+include::{snippets}/item-controller-test/test-get-by-id/httpie-request.adoc[]
+HTTP request
+include::{snippets}/item-controller-test/test-get-by-id/http-request.adoc[]
+Path parameters
+include::{snippets}/item-controller-test/test-get-by-id/path-parameters.adoc[]
+HTTP response
+include::{snippets}/item-controller-test/test-get-by-id/http-response.adoc[]
+HTTP response fields
+include::{snippets}/item-controller-test/test-get-by-id/response-fields.adoc[]

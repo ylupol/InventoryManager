@@ -1,7 +1,10 @@
-package com.ylupol.im.location;
+package com.ylupol.im.item;
 
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,8 +14,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Builder
@@ -20,18 +21,18 @@ import org.hibernate.validator.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode(of = {"id", "name"})
-public class Location {
+@EqualsAndHashCode(of = {"id"})
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
-    @Column(nullable = false, unique = true)
-    private String name;
+    @Column(nullable = false)
+    private LocalDateTime time;
 
-    private String description;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private EventType eventType;
 
 }
